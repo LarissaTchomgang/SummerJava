@@ -5,6 +5,7 @@
 package com.summercoding.bank.controlleur;
 
 import com.summercoding.bank.entities.Admin;
+import com.summercoding.bank.entities.Compte;
 import com.summercoding.bank.entities.Utilisateur;
 import com.summercoding.bank.gestionnaires.GestionnaireAdmin;
 import com.summercoding.bank.gestionnaires.GestionnaireCompte;
@@ -26,9 +27,15 @@ public class Controlleur {
     GestionnaireCompte gestionnairecompte = new GestionnaireCompte();
     
     
-    public Admin routeVersLogin(String login, String password) throws SQLException {
+    public Admin routeVersLoginAdministrateur(String login, String password) throws SQLException {
         return gestionnaireadmin.login(login, password);// controlleur du login pour admin
     }
+    
+    public Utilisateur routeVersLoginUtilisateur(String login, String password) throws SQLException{
+        return gestionnaireutilisateur.login(login, password); 
+    }
+        
+    
     
     /*public void Utilisateur routeVersLogin(String login, String password) throws SQLException {
         gestionnaireutilisateur.loginUtilisateur(login, password);// controlleur du login pour admin
@@ -51,7 +58,11 @@ public class Controlleur {
     } 
     
    
-    public List<Utilisateur>routeVersAllUtilisateur() throws SQLException {//pour les listes des utilisateurs qui se derouleront avec le combobox
+    public List<Utilisateur>routeVersListAllUtilisateur() throws SQLException {//pour les listes des utilisateurs qui se derouleront avec le combobox
         return gestionnaireutilisateur.listAllUtilisateur();
+    }
+    
+    public List<Compte>routeVersListAllCompte() throws SQLException {
+        return gestionnairecompte.listAllCompte();
     }
 }

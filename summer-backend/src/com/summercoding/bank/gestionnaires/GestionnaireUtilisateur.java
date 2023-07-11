@@ -17,7 +17,7 @@ import static sun.security.jgss.GSSUtil.login;
  * @author Moi
  */
 public class GestionnaireUtilisateur {
-    //
+   
     private Utilisateur utilisateur = new Utilisateur();
     public Utilisateur login(String login, String password) throws SQLException{
         return utilisateur.getByLoginAndPassword(login, password);

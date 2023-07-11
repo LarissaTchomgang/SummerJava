@@ -6,9 +6,11 @@ package com.summercoding.bank.ui;
 
 import com.summercoding.bank.controlleur.Controlleur;
 import com.summercoding.bank.entities.Admin;
+import com.summercoding.bank.entities.Utilisateur;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,6 +18,7 @@ import javax.swing.JOptionPane;
  * @author Moi
  */
 public class JFrameLogin extends javax.swing.JFrame {
+
     Controlleur controlleur = new Controlleur();
 
     /**
@@ -23,6 +26,7 @@ public class JFrameLogin extends javax.swing.JFrame {
      */
     public JFrameLogin() {
         initComponents();
+
     }
 
     /**
@@ -41,8 +45,10 @@ public class JFrameLogin extends javax.swing.JFrame {
         ChampPassword = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         buttonOK = new javax.swing.JButton();
+        ComboBoxChoix = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("LOGIN");
 
         jLabel1.setText("Login");
 
@@ -61,11 +67,23 @@ public class JFrameLogin extends javax.swing.JFrame {
         });
 
         jButton2.setText("Annuler");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         buttonOK.setText("OK");
         buttonOK.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonOKActionPerformed(evt);
+            }
+        });
+
+        ComboBoxChoix.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrateur", "Utilisateur", " " }));
+        ComboBoxChoix.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComboBoxChoixActionPerformed(evt);
             }
         });
 
@@ -77,6 +95,11 @@ public class JFrameLogin extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 123, Short.MAX_VALUE)
+                        .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buttonOK))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -84,24 +107,25 @@ public class JFrameLogin extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(ChampPassword)
                             .addComponent(ChampLogin))
-                        .addContainerGap())
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 123, Short.MAX_VALUE)
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buttonOK))))
+                        .addContainerGap())))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addComponent(ComboBoxChoix, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(56, 56, 56)
+                .addGap(19, 19, 19)
+                .addComponent(ComboBoxChoix, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ChampLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ChampPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ChampPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(83, 83, 83)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
@@ -127,27 +151,67 @@ public class JFrameLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ChampLoginActionPerformed
 
+    private void buttonOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOKActionPerformed
+        // TODO add your handling code here:
+
+        if (ChampLogin.toString().equals("") || ChampPassword.toString().equals("")) {
+            JOptionPane.showMessageDialog(this, "veillez remplir tous les champs");
+        } else {
+            if (ComboBoxChoix.getSelectedItem().toString().equals("Utilisateur")) {
+            try {
+                String login = ChampLogin.getText();
+                String password = ChampPassword.getText();
+
+                Utilisateur utilisateur = controlleur.routeVersLoginUtilisateur(login, password);
+                if (utilisateur == null) {
+                    JOptionPane.showMessageDialog(null, "login ou password incorrect");
+                } else {
+                    //JOptionPane.showMessageDialog(null, "Succes!!! \n Vous êtes connectés en tant qu'utilisateur");
+                    this.setVisible(false);// pour rendre la page de login invisible
+                    new JFrameHome().setVisible(true);// pour afficher la page de home
+                    
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(JFrameLogin.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            try {
+                String login = ChampLogin.getText();
+                String password = ChampPassword.getText();
+
+                Admin admin = controlleur.routeVersLoginAdministrateur(login, password);
+                if (admin == null) {
+                    JOptionPane.showMessageDialog(null, "login ou password incorrect");
+                } else {
+                    //JOptionPane.showMessageDialog(null, "succes!!! \n Vous êtes connecté en tant qu'administrateur");
+                    this.setVisible(false); //  pour rendre la page de login invisible
+                    new JFrameHome().setVisible(true);// pour afficher la page de home
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(JFrameLogin.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        }
+        
+        
+        
+        
+
+
+    }//GEN-LAST:event_buttonOKActionPerformed
+
+    private void ComboBoxChoixActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBoxChoixActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ComboBoxChoixActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     private void ChampPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChampPasswordActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ChampPasswordActionPerformed
-
-    private void buttonOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOKActionPerformed
-        // TODO add your handling code here:
-        try {
-            // TODO add your handling code here:
-            String login = ChampLogin.getText();
-            String password = ChampPassword.getText();
-            
-            Admin admin = controlleur.routeVersLogin(login, password);
-            if (admin == null) {
-                JOptionPane.showMessageDialog(null, "login or password incorrect");
-            }else {
-                JOptionPane.showMessageDialog(null, "succes");
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(JFrameLogin.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_buttonOKActionPerformed
 
     /**
      * @param args the command line arguments
@@ -187,6 +251,7 @@ public class JFrameLogin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField ChampLogin;
     private javax.swing.JTextField ChampPassword;
+    private javax.swing.JComboBox<String> ComboBoxChoix;
     private javax.swing.JButton buttonOK;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;

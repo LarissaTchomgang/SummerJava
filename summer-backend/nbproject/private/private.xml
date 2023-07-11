@@ -5,17 +5,13 @@
         <group>
             <file>file:/C:/Users/Moi/Documents/NetBeansProjects/summer-backend/src/com/summercoding/bank/ui/JFrameLogin.java</file>
             <file>file:/C:/Users/Moi/Documents/NetBeansProjects/summer-backend/src/com/summercoding/bank/gestionnaires/GestionnaireCompte.java</file>
-            <file>file:/C:/Users/Moi/Documents/NetBeansProjects/summer-backend/src/summer/backend/SummerBackend.java</file>
-            <file>file:/C:/Users/Moi/Documents/NetBeansProjects/summer-backend/src/com/summercoding/bank/entities/Admin.java</file>
+            <file>file:/C:/Users/Moi/Documents/NetBeansProjects/summer-backend/src/com/summercoding/bank/ui/JFrameSaveUtilisateur.java</file>
+            <file>file:/C:/Users/Moi/Documents/NetBeansProjects/summer-backend/src/com/summercoding/bank/ui/JFrameHome.java</file>
+            <file>file:/C:/Users/Moi/Documents/NetBeansProjects/summer-backend/src/com/summercoding/bank/ui/JFrameSaveAdmin.java</file>
             <file>file:/C:/Users/Moi/Documents/NetBeansProjects/summer-backend/src/com/summercoding/bank/ui/JFrameSaveCompte.java</file>
             <file>file:/C:/Users/Moi/Documents/NetBeansProjects/summer-backend/src/com/summercoding/bank/ui/JFrameSaveUtilisateur1.java</file>
-            <file>file:/C:/Users/Moi/Documents/NetBeansProjects/summer-backend/src/com/summercoding/bank/entities/Utilisateur.java</file>
             <file>file:/C:/Users/Moi/Documents/NetBeansProjects/summer-backend/src/com/summercoding/bank/gestionnaires/GestionnaireUtilisateur.java</file>
             <file>file:/C:/Users/Moi/Documents/NetBeansProjects/summer-backend/src/com/summercoding/bank/controlleur/Controlleur.java</file>
-            <file>file:/C:/Users/Moi/Documents/NetBeansProjects/summer-backend/src/com/summercoding/bank/utils/JDBC.java</file>
-            <file>file:/C:/Users/Moi/Documents/NetBeansProjects/summer-backend/src/com/summercoding/bank/gestionnaires/GestionnaireAdmin.java</file>
-            <file>file:/C:/Users/Moi/Documents/NetBeansProjects/summer-backend/src/com/summercoding/bank/entities/Compte.java</file>
-            <file>file:/C:/Users/Moi/Documents/NetBeansProjects/summer-backend/src/com/summercoding/bank/ui/JFrameSaveAdmin.java</file>
         </group>
     </open-files>
 </project-private>

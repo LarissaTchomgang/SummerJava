@@ -36,7 +36,7 @@ public class JFrameSaveCompte extends javax.swing.JFrame {
         }
         
         try {
-            for(Utilisateur utilisateur : controlleur.routeVersAllUtilisateur()) {//recuperer et parcourir les idutilisateurs de la bd
+            for(Utilisateur utilisateur : controlleur.routeVersListAllUtilisateur()) {//recuperer et parcourir les idutilisateurs de la bd
                 ComboBoxIdutilisateur.addItem(utilisateur.getIdutilisateur()+" "+utilisateur.getLogin());
             }
         } catch (SQLException ex) {
@@ -65,7 +65,8 @@ public class JFrameSaveCompte extends javax.swing.JFrame {
         ComboBoxIdutilisateur = new javax.swing.JComboBox<>();
         ComboBoxIdadmin = new javax.swing.JComboBox<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Save Compte");
 
         jLabel2.setText("solde");
 
@@ -88,6 +89,12 @@ public class JFrameSaveCompte extends javax.swing.JFrame {
         });
 
         jLabel5.setText("ENREGISTRER UN COMPTE");
+
+        ComboBoxIdutilisateur.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComboBoxIdutilisateurActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -117,22 +124,22 @@ public class JFrameSaveCompte extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(43, 43, 43)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(81, Short.MAX_VALUE))
+                .addContainerGap(143, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(51, 51, 51)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(ChampSolde, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(42, 42, 42)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(ComboBoxIdutilisateur, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(43, 43, 43)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(ComboBoxIdadmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -195,6 +202,10 @@ public class JFrameSaveCompte extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_buttonOKActionPerformed
+
+    private void ComboBoxIdutilisateurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBoxIdutilisateurActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ComboBoxIdutilisateurActionPerformed
 
     /**
      * @param args the command line arguments
